@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<config>
+<sections>
+<igex translate="label" module="igex_storelocator">
+	<label>Store Locator</label>
+        <tab>igex</tab>
+        <frontend_type>text</frontend_type>
+        <sort_order>100</sort_order>
+        <show_in_default>1</show_in_default>
+        <show_in_website>1</show_in_website>
+        <show_in_store>1</show_in_store>
+<groups>
+<storelocator_options translate="label">
+<label>General Options</label>
+<frontend_type>text</frontend_type>
+<sort_order>10</sort_order>
+<show_in_default>1</show_in_default>
+<show_in_website>1</show_in_website>
+<show_in_store>1</show_in_store>
+<fields>
+	<serial translate="label">
+		<label>Serial</label>
+		<frontend_type>text</frontend_type>
+	        <sort_order>1</sort_order>
+	        <show_in_default>1</show_in_default>
+	        <show_in_website>1</show_in_website>
+	        <show_in_store>1</show_in_store>
+	</serial>
+	<apiurl translate="label">
+		<label>API Url</label>
+		<frontend_type>text</frontend_type>
+		<sort_order>10</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		<comment>Enter here the Google API Url. Use the default value : http://maps.googleapis.com/maps/api/js?v=3</comment>
+	</apiurl>
+        <apikey translate="label">
+		<label>API Key</label>
+		<frontend_type>text</frontend_type>
+		<sort_order>11</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		<comment>Enter here the Google API key</comment>
+	</apikey>
+	<apisensor translate="label">
+		<label>Api Sensor</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>12</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		<comment>You can enable the sensor to use the geolocation</comment>
+	</apisensor>
+        <direction translate="label">
+		<label>Enable Direction</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>13</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		<comment>You can enable the direction</comment>
+	</direction>
+	<defaultimage translate="label comment">
+		<label>Default Store Image</label>
+		<comment>Allowed file types: PNG, JPG, JPEG.</comment>
+		<frontend_type>image</frontend_type>
+		<backend_model>igex_storelocator/system_config_backend_image</backend_model>
+		<base_url type="media" scope_info="1">storelocator/images</base_url>
+		<sort_order>14</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</defaultimage>
+	<mapicon translate="label comment">
+		<label>Marker Icon</label>
+		<comment>Allowed file types: PNG, JPG, JPEG.</comment>
+		<frontend_type>image</frontend_type>
+		<backend_model>igex_storelocator/system_config_backend_marker</backend_model>
+		<base_url type="media" scope_info="1">storelocator/markers</base_url>
+		<sort_order>15</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</mapicon>
+	<page_type translate="label">
+		<label>Page Type</label>
+		<frontend_type>select</frontend_type>
+		<source_model>igex_storelocator/pagedisplay</source_model>
+		<sort_order>25</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</page_type>
+</fields>
+</storelocator_options>
+
+<search_options translate="label">
+<label>Search Options</label>
+<frontend_type>text</frontend_type>
+<sort_order>20</sort_order>
+<show_in_default>1</show_in_default>
+<show_in_website>1</show_in_website>
+<show_in_store>1</show_in_store>
+<fields>
+	<search_by_address translate="label">
+		<label>Enable Address Search</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>20</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</search_by_address>
+	<search_by_state translate="label">
+		<label>Enable State Search</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>25</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		</search_by_state>
+		<search_by_zipcode translate="label">
+	<label>Enable Zipcode Search</label>
+	<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>30</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</search_by_zipcode>
+	<search_by_radius translate="label">
+		<label>Enable Radius Search</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>30</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</search_by_radius>
+	<search_radius translate="label comment">
+		<label>Search Radius</label>
+		<comment><![CDATA[Separated by comma.]]></comment>
+		<frontend_type>text</frontend_type>
+		<sort_order>60</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</search_radius>
+	<default_search_radius translate="label comment">
+		<label>Default Search Radius</label>					
+		<frontend_type>text</frontend_type>
+		<sort_order>70</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</default_search_radius>
+	<distance_units translate="label">
+		<label>Distance Unit</label>
+		<frontend_type>select</frontend_type>
+		<source_model>igex_storelocator/distanceunits</source_model>
+		<sort_order>80</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</distance_units>
+	<state_search translate="label comment">
+		<label>Enable State Top Search Links</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>40</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</state_search>
+</fields>
+</search_options>
+
+<display_options translate="label">
+<label>FrontEnd Options</label>
+<frontend_type>text</frontend_type>
+<sort_order>30</sort_order>
+<show_in_default>1</show_in_default>
+<show_in_website>1</show_in_website>
+<show_in_store>1</show_in_store>
+<fields>
+	<show_image translate="label">
+		<label>Show Image on Front</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>17</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+		</show_image>						
+	<show_top_link translate="label">
+	<label>Show Top Link</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>100</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</show_top_link>
+	<show_email_and_website translate="label">
+		<label>Show Email And Website</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>110</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</show_email_and_website>
+	<show_phone translate="label">
+		<label>Show Phone No.</label>
+		<frontend_type>select</frontend_type>
+		<source_model>adminhtml/system_config_source_yesno</source_model>
+		<sort_order>130</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>
+	</show_phone>
+</fields>
+</display_options>
+</groups>
+</igex>
+<!-- <storelocator1 translate="label" module="igex_storelocator">
+	<label>Info</label>
+	<tab>igex</tab>
+        <frontend_type>text</frontend_type>
+        <sort_order>101</sort_order>
+        <show_in_default>1</show_in_default>
+        <show_in_website>1</show_in_website>
+        <show_in_store>1</show_in_store>
+</storelocator1> -->
+</sections>
+</config>

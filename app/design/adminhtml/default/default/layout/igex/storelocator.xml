@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <igex_storelocator_adminhtml_store_index>
+        <reference name="content">
+            <block type="igex_storelocator/adminhtml_store" name="igex_storelocator_store" />
+        </reference>
+    </igex_storelocator_adminhtml_store_index>
+
+    <igex_storelocator_adminhtml_store_new>
+        <update handle="igex_storelocator_store_edit" />
+    </igex_storelocator_adminhtml_store_new>
+
+    <igex_storelocator_adminhtml_store_edit>
+        <reference name="content">
+            <block type="igex_storelocator/adminhtml_store_edit" name="storelocator_store_edit"></block>
+        </reference>
+    </igex_storelocator_adminhtml_store_edit>
+    
+    <igex_storelocator_adminhtml_import_index>
+		<reference name="content">
+			<block type="igex_storelocator/adminhtml_import" name="import" />
+		</reference>
+	</igex_storelocator_adminhtml_import_index>
+</layout>

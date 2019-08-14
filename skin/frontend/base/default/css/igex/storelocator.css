@@ -1,0 +1,262 @@
+#map_canvas{
+    width : 53%;
+    height : 514px;
+    float:left;
+    margin-left: 1%;
+}
+
+#panel{
+    float:left;
+    margin-top:15px;
+}
+
+.store-list{
+    width : 45%;
+    float : left;
+    height : 514px;
+    overflow-y:scroll;
+}
+.store-row{
+    padding-left: 10px;
+}
+.col-address{
+    width : 36%;
+    text-transform:uppercase;
+}
+.store-image{
+    width:4%;
+}
+.store-table{
+    border-bottom: 1px solid grey ;
+    width : 100%;
+    padding: 10px;
+}
+.first{
+    border-top: 1px solid grey ;
+}
+
+ .store-name{
+     cursor: pointer;
+     text-decoration: none;
+     font-size: 14px;
+}
+
+ #search .input-text {
+     width: 300px;
+     padding: 5px;
+ }
+ #search{
+     margin-bottom: 10px;
+     margin-right:10px;
+     float:left;
+ }
+
+
+.igex_input_box {
+    border: 1px solid #b6b6b6;
+    font-size: 12px;
+    padding: 5px 5px 6px;
+    width: 254px;
+}
+
+.str_add_box {
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+.str_add_box_lft {
+    float: left;
+    width: 50%;
+    padding-bottom:10px;
+}
+.str_add_left {
+    float: left;
+    width: 42%;
+}
+.str_add_left img {
+    border: 1px solid #A6B1B8;
+    float: left;
+    width: 185px;
+}
+
+.str_add_right {
+    float: left;
+    width: 58%;
+}
+
+.str_add_right_head {
+    color: #E76200;
+    float: left;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    margin-left:5px;
+}
+
+.str_add_txt {
+    float: left;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.str_add_txt ul {
+    margin: 0;
+    padding: 0;
+}
+
+.add_tel {
+    color: #808D95;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 8px;
+    width: 100%;
+    margin-left:5px;
+}
+
+.str_add_txt li {
+    color: #808D95;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    width: 100%;
+    margin-left:5px;
+}
+
+.st_link {
+    float: left;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.st_link ul {
+    margin: 0;
+    padding: 0;
+}
+
+.st_link li:first-child {
+    padding: 0 16px 0 0;
+}
+
+.st_link li {
+    float: left;
+    padding: 0 16px;
+}
+
+.st_link li.active a {
+    text-decoration: underline;
+}
+
+.st_link li a {
+    color: #808D95;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+.label {
+    color: #666666;
+    float: left;
+    font-weight: bold;
+    position: relative;
+    z-index: 0;
+}
+
+.button
+{
+    color:#FFFFFF; 
+    background:#E76200; 
+    cursor:pointer;
+    font: 12px/33px Arial,Helvetica,sans-serif; 
+    height:28px !important; 
+    margin:0; 
+    overflow:visible; 
+    padding-left:12px; 
+    padding-right:12px; 
+    text-align: center; 
+    white-space:nowrap; 
+    width:auto;
+    font-weight:bold;
+    border:0;
+}
+
+.note
+{
+    background-color: #FAFAEC;
+    border-color: #FCD344;
+    color: #3D6611;
+    background-position: 10px 9px !important; 
+    background-repeat: no-repeat !important; 
+    border-style: solid !important; 
+    border-width: 1px !important; 
+    font-size: 14px !important; 
+    font-weight: bold !important; 
+    min-height: 24px !important; 
+    padding: 8px 8px 8px 32px !important;
+}
+
+.span-geoloc{
+    cursor:pointer;
+    background-color: #7e2222;
+    color:#fff;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-bottom: 2px solid #808080;
+    border-right: 2px solid #808080;
+    /*-moz-box-shadow: inset -1px -1px grey;
+    -webkit-box-shadow: inset -1px -1px grey;
+    padding : 1px 5px 0px 5px;
+	clear:both;
+    float:right;
+    margin-top:5px;*/
+}
+.span-geoloc:active{
+    background-color: #6b1b1b;
+     border-bottom: 2px solid #696969;
+     border-right: 2px solid #696969;
+ }
+
+.pac-container .pac-item{
+   text-align:left;
+}
+
+ .store-description{
+     width:350px;
+     padding-top:10px;
+     clear:both;
+     overflow-y: auto;
+     max-height: 100px;
+ }
+
+ .store-info{
+     max-height:400px;
+     min-width:300px;
+ }
+ .store-image-infoWindow {
+     width:135px;
+     height:135px;
+     border:1px solid #808D95;
+ }
+
+ .store-image-div-infoWindow{
+     float:left;
+ }
+
+ .store-name-infoWindow{
+    width:150px;
+    float:left;
+    margin-left:15px;
+ }
+
+ .store-name-infoWindow h3{
+     font-size:14px;
+ }
+
+.str_add_box_rgt {
+    float: left;
+    width: 50%;
+}

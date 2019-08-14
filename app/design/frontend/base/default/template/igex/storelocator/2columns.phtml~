@@ -1,0 +1,227 @@
+<?php
+	$address       = $this->getRequest()->getPost('address');
+	$state_or_stub = $this->getRequest()->getPost('state_or_stub');
+	$zipcode       = $this->getRequest()->getPost('zipcode');
+	
+	$search_add   = Mage::getStoreConfig('igex/search_options/search_by_address'); 
+	$search_state = Mage::getStoreConfig('igex/search_options/search_by_state'); 
+	$search_zip   = Mage::getStoreConfig('igex/search_options/search_by_zipcode'); 
+	$search_rad   = Mage::getStoreConfig('igex/search_options/search_by_radius'); 
+        $show_state   = Mage::getStoreConfig('igex/search_options/state_search'); 
+	$show_img     = Mage::getStoreConfig('igex/display_options/show_image'); 
+	$show_email   = Mage::getStoreConfig('igex/display_options/show_email_and_website');
+	$show_ph      = Mage::getStoreConfig('igex/display_options/show_phone');	?>
+
+<h1><?php echo $this->__('Store Locator');?></h1>
+
+<div class="str_add_box">
+  <?php 
+  		$speacialStoreAll = Mage::getModel('igex_storelocator/store')->getCollection()
+					  ->addFieldToFilter('status',1)
+					  ->addFieldToFilter('topvisible',1);
+
+  foreach($speacialStoreAll as $specialStore):
+  	if(!is_null($specialStore->getImage()) || $specialStore->getImage() != ''){
+                $imgUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$specialStore->getImage();
+            }elseif (!is_null(Mage::getStoreConfig('igex/storelocator_options/defaultimage')) && Mage::getStoreConfig('igex/storelocator_options/defaultimage') != ''){
+                $imgUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'storelocator/images/'.Mage::getStoreConfig('igex/storelocator_options/defaultimage');
+            }else{
+                $imgUrl = $this->getLogoSrc();
+            }
+            $specialStore->setImage($imgUrl);
+  ?>
+    <div class="str_add_box_lft">
+      <div class="str_add_left"><img src="<?php echo $specialStore->getImage(); ?>" width="185" height="150" alt="<?php echo $specialStore->getName(); ?>" /></div>
+      <div class="str_add_right">
+             <div class="str_add_right_head"><?php echo $specialStore->getName(); ?></div>
+        <div class="str_add_txt">
+          <ul>
+            <li><?php echo nl2br($specialStore->getAddress()); ?></li>
+            <li><?php echo $specialStore->getState()." ".$specialStore->getZipcode(); ?></li>
+          </ul>
+
+          <div class="add_tel"><?php if(!is_null($specialStore->getPhone())&& $specialStore->getPhone()!= ''):?>
+              <?php echo $this->__('T : %s', $specialStore->getPhone()); ?>
+              <?php endif; ?></div>
+        </div>
+      </div>
+    </div>
+   <?php 	endforeach; ?>
+  </div>
+<div style="clear:both;"></div>
+<br/>
+<h3><?php echo $this->__('Search By:');?></h3>
+
+<form action="<?php echo Mage::getUrl('igex_storelocator/'); ?>" method="post">
+<div id="search" style="<?php if($search_add==0):?>display:none;<?php endif;?>">
+        <label for="address" class="label"><?php echo $this->__('Address : ');?></label>
+        <input type="text" class="igex_input_box" name="address" id="address" value="<?php echo $address; ?>" />
+</div>
+
+<div id="search" style="<?php if($search_state==0):?>display:none;<?php endif;?>">
+	<label for="state" class="label"><?php echo $this->__('State : ');?></label>
+	<input type="text" class="igex_input_box" name="state_or_stub" id="state_or_stub" value="<?php echo $state_or_stub; ?>" />
+</div>
+
+<div id="search" style="<?php if($search_zip==0 && $search_rad==0):?>display:none;<?php endif;?>">
+	<label for="zipcode" class="label"><?php echo $this->__('Zipcode : ');?></label>	
+	<input type="text" class="igex_input_box" value="<?php echo $zipcode; ?>" name="zipcode" id="zipcode" />
+</div>
+
+<div id="search" style="<?php if($search_rad==0):?>display:none;<?php endif;?>">
+<?php $searchRadiusOptions = Mage::helper('igex_storelocator')->getSearchRadiusOptions();?>
+<?php if(count($searchRadiusOptions)):?>
+	<label for="radius"  class="label"><?php echo $this->__('Search Radius :') ?></label>
+	<select name="radius" id="radius" class="igex_input_box">
+		<?php foreach ($searchRadiusOptions as $option):?>
+		<option value="<?php echo $option['value'] ?>" <?php if ($option['value'] == Mage::helper('igex_storelocator')->getSearchRadius()):?> selected<?php endif;?>><?php echo $option['label']?> </option>
+		<?php endforeach;?>
+	</select>
+<?php endif;?>
+</div>
+
+<div id="search">
+<button type="submit" title="<?php echo $this->__('Search') ?>" name="search" class="button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+</div>
+<div id="search">
+<button type="button" onclick="setLocation('<?php echo $this->getUrl('igex_storelocator')?>')" class="button" title="<?php echo $this->__('Reset') ?>"><span><span><?php echo $this->__('Reset') ?></span></span></button>
+</div>
+</form>
+<div style="clear:both;"></div>
+<br/>
+
+
+<div class="st_link">
+    <ul>
+    <?php
+
+	if($show_state==1)
+	{
+		$stateLink = Mage::getModel('igex_storelocator/store')->getCollection()
+					  ->addFieldToFilter('status',1)
+					  ->addFieldToSelect(array('state'));
+		$stateArr	= array();
+		foreach($stateLink as $state){
+			if($state['state'] && !(in_array($state['state'],$stateArr))){
+				$stateArr[] = $state['state'];
+				array_unique($stateArr);
+			}
+		}
+		arsort($stateArr);
+		
+		for($x=0;$x<count($stateArr);$x++){
+		$cls='';	
+			if($stateReq!='' && $stateReq== $stateArr[$x]){ $cls = 'class="active"'; }
+			else if($stateReq=='' && $zipcode=='' && $state_or_stub=='' && $x==0){ $cls = 'class="active"'; }
+	?>
+      <li <?php echo $cls; ?>><a href="<?php echo Mage::getUrl('igex_storelocator/',array('state'=>$stateArr[$x])); ?>"><?php echo $stateArr[$x]; ?></a></li>
+    <?php
+		}
+	}
+	?>
+    </ul>
+  </div>
+<div style="clear:both;"></div>
+<br/>
+<div class="store-list">
+<!--<?php echo count($this->getStores()); ?>-->
+<h3><?php echo $this->__('All Stores ('.count($this->getCollection()).')');?></h3>
+    <?php foreach($this->getCollection() as $store) :?>
+
+            <table id="store-table" class="store-table">
+                <tbody>
+
+                    <tr>
+                        <td rowspan="10" class="store-image" style="<?php if($show_img==0):?>display:none;<?php endif;?>" width="140px">
+                            <img src="<?php echo $store->getImage(); ?>" alt="<?php echo $store->getName()?>" width="120px" height="120px" style="border:1px solid #808D95;"/>  <!-- alt="<?php echo $store->getName()?>"  -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 class='store-name' id="store<?php echo $store->getId(); ?>"><?php echo $store->getName()?></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-address">
+                            <?php echo $store->getAddress()?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-address">
+                            <?php echo $store->getZipcode()." ".$store->getCity()?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-address">
+                            <?php echo $store->getCountryId(); ?>
+                        </td>
+                    </tr>
+		    <tr>
+                        <td>
+				<?php if(!is_null($store->getStoreUrl()) && $store->getStoreUrl() != '' && $show_email==1):?>
+                                <?php echo $this->__('<b>Website</b> : %s', "<a href='".$store->getStoreUrl()."' target='_blank'>");?><?php echo $this->__('%s', $store->getStoreUrl());?></a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+		    <tr>
+                        <td>
+                            <?php if(!is_null($store->getEmail())&& $store->getEmail()!= '' && $show_email==1):?>
+                                <?php echo $this->__('Email : %s', $store->getEmail()); ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            <?php if(!is_null($store->getPhone())&& $store->getPhone()!= '' && $show_ph==1):?>
+                                <?php echo $this->__('Phone : %s', $store->getPhone()); ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <?php if(!is_null($store->getFax()) && $store->getFax() != ''):?>
+                               <?php echo $this->__('Fax : %s', $store->getFax());?>
+                        <?php endif; ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    <?php endforeach;?>
+<?php if(count($this->getCollection())==0):?>
+<div class="note">There are no stores matching your selection</div>
+<?php endif;?>
+</div>
+<div id="maps">
+    <div id="map_canvas"></div>
+</div>
+<div id="panel"></div>
+
+<script type="text/javascript">
+
+	var state_or_stubVar = document.getElementById('state_or_stub');
+	var zipcodeVar	     = document.getElementById('zipcode');
+	var allowFlag	     = 0;
+
+	function checkForm() 
+	{ 
+		 if(state_or_stubVar.value!=''){ allowFlag = 1; }
+		 else if(zipcodeVar.value!=''){ allowFlag = 1; }	
+
+		 if(allowFlag == 1){ return true; }
+		 alert('Enter Your State Or Postcode');
+		 return false;
+	}
+    
+	var estimateDirectionLabel = '<?php echo $this->__('Calculating the estimated'); ?>';
+	var gmapUrl = '<?php echo $this->getGoogleApiUrl(); ?>';
+	var apiSensor = <?php echo Mage::getStoreConfig('igex/storelocator_options/apisensor'); ?>;
+	var stores = <?php echo Mage::helper('core')->jsonEncode($this->getStores()->toArray()); ?>;
+    	var mediaUrl = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>';
+	var pathMarker = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ?>';
+	var defaultMarker = '<?php echo $this->getDefaultMarker(); ?>';
+	var directionEnable = <?php echo Mage::getStoreConfig('igex/storelocator_options/direction'); ?>;
+	
+    	window.onload = loadScript;
+
+</script>

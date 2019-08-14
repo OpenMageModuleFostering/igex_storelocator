@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Igex_StoreLocator>
+            <active>true</active>
+            <codePool>local</codePool>
+            <key>T25pYmlfRnJlZQ==</key>
+        </Igex_StoreLocator>
+    </modules>
+</config>
