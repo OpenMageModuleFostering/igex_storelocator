@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Igex_Storelocator",
+    "name": "OpenMageModuleFostering\/Igex_Storelocator",
     "type": "magento-module",
     "license": "OSL",
     "homepage": "",
     "description": "Free easy and customizable store locator extension for magento community stores",
     "authors": [
-    {
-        "name": "iGex Solutions",
-        "email": "narendra@igexsolutions.com"
-    }
-],
+        {
+            "name": "iGex Solutions",
+            "email": "narendra@igexsolutions.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
